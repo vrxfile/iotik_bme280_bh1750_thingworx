@@ -136,10 +136,10 @@ void readSensorBME280()
 {
   Wire.begin(4, 5);         // Инициализация I2C на выводах 4, 5
   Wire.setClock(100000L);   // Снижение тактовой частоты для надежности
+  bme280.begin();
   sensorValues[air_temp] = bme280.readTemperature();
   sensorValues[air_hum] = bme280.readHumidity();
   sensorValues[air_press] = bme280.readPressure() * 7.5006 / 1000.0;
-  bme280.begin();
 }
 
 // Чтение аналоговых датчиков
