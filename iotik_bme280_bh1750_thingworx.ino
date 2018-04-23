@@ -127,6 +127,7 @@ void readSensorBH1750()
   Wire.begin(0, 2);         // Инициализация I2C на выводах 0, 2
   Wire.setClock(100000L);   // Снижение тактовой частоты для надежности
   bh1750.begin();           // Инициализация датчика
+  delay(128);
   bh1750.setMode(Continuously_High_Resolution_Mode); // Установка разрешения датчика
   sensorValues[sun_light] = bh1750.getAmbientLight();
 }
@@ -137,6 +138,7 @@ void readSensorBME280()
   Wire.begin(4, 5);         // Инициализация I2C на выводах 4, 5
   Wire.setClock(100000L);   // Снижение тактовой частоты для надежности
   bme280.begin();
+  delay(128);
   sensorValues[air_temp] = bme280.readTemperature();
   sensorValues[air_hum] = bme280.readHumidity();
   sensorValues[air_press] = bme280.readPressure() * 7.5006 / 1000.0;
